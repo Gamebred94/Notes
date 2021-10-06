@@ -3,7 +3,7 @@
     
         "post0": {
             "title": "An introduction to Reinforcement Learning",
-            "content": "",
+            "content": "What is RL? . In a nutshell, RL is the study of agents and how they learn by trial and error. | It formalizes the idea that rewarding or punishing an agent for its behavior makes it more likely to repeat or forego that behavior in the future. | . This is quite a broad setting, which can apply to a wide variety of tasks. . .",
             "url": "https://gamebred94.github.io/reinforcement-learning/2021/04/10/test2.html",
             "relUrl": "/2021/04/10/test2.html",
             "date": " • Apr 10, 2021"
