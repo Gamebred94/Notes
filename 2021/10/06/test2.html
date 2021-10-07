@@ -414,6 +414,49 @@ they represent the cart’s horizontal position (0.0 = center), its velocity (po
 
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hide</span><span class="o">-</span><span class="nb">input</span>
+<span class="k">def</span> <span class="nf">plot_environment</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">)):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;rgb_array&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">img</span>
+
+<span class="n">plot_environment</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+" />
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span>
 </pre></div>
 
