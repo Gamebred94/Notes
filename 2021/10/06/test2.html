@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>An introduction to Reinforcement Learning | Ashish Gusain’s blog</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="An introduction to Reinforcement Learning" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Demo and Discussion of RL &amp; OpenAI gym" />
+<meta property="og:description" content="Demo and Discussion of RL &amp; OpenAI gym" />
+<link rel="canonical" href="https://gamebred94.github.io/reinforcement-learning/2021/10/06/test2.html" />
+<meta property="og:url" content="https://gamebred94.github.io/reinforcement-learning/2021/10/06/test2.html" />
+<meta property="og:site_name" content="Ashish Gusain’s blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-06T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-10-06T00:00:00-05:00","url":"https://gamebred94.github.io/reinforcement-learning/2021/10/06/test2.html","@type":"BlogPosting","headline":"An introduction to Reinforcement Learning","dateModified":"2021-10-06T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://gamebred94.github.io/reinforcement-learning/2021/10/06/test2.html"},"description":"Demo and Discussion of RL &amp; OpenAI gym","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/reinforcement-learning/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://gamebred94.github.io/reinforcement-learning/feed.xml" title="Ashish Gusain's blog" /><link rel="shortcut icon" type="image/x-icon" href="/reinforcement-learning/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/reinforcement-learning/">Ashish Gusain&#39;s blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/reinforcement-learning/about/">About Me</a><a class="page-link" href="/reinforcement-learning/search/">Search</a><a class="page-link" href="/reinforcement-learning/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">An introduction to Reinforcement Learning</h1><p class="page-description">Demo and Discussion of RL & OpenAI gym</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-10-06T00:00:00-05:00" itemprop="datePublished">
+        Oct 6, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/Gamebred94/reinforcement-learning/tree/master/_notebooks/2021-10-06-test2.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/reinforcement-learning/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/Gamebred94/reinforcement-learning/master?filepath=_notebooks%2F2021-10-06-test2.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/reinforcement-learning/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/Gamebred94/reinforcement-learning/blob/master/_notebooks/2021-10-06-test2.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/reinforcement-learning/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-10-06-test2.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">PIL</span>
+<span class="kn">import</span> <span class="nn">gym</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;axes&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;xtick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;ytick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="c1"># To get smooth animations</span>
+<span class="kn">import</span> <span class="nn">matplotlib.animation</span> <span class="k">as</span> <span class="nn">animation</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;animation&#39;</span><span class="p">,</span> <span class="n">html</span><span class="o">=</span><span class="s1">&#39;jshtml&#39;</span><span class="p">)</span>
+<span class="c1"># Imports specifically so we can render outputs in Jupyter.</span>
+<span class="c1">#from JSAnimation.IPython_display import display_animation</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">animation</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+</p>
+    </details>
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-is-RL?">What is RL?<a class="anchor-link" href="#What-is-RL?"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>In a nutshell, RL is the study of agents and how they learn by trial and error</li>
+<li>It formalizes the idea that rewarding or punishing an agent for its behavior makes it more likely to repeat or forego that behavior in the future</li>
+</ul>
+<p>This is quite a broad setting, which can apply to a wide variety of tasks.</p>
+<p><figure>
+  
+    <img class="docimage" src="/reinforcement-learning/images/copied_from_nb/my_icons/RL_applications.JPG" alt="" style="max-width: 700px" />
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>The agent can be the program controlling a robot. In this case, the environment is the real world, the agent observes the environment through a set of sensors such as cameras and touch sensors, and its actions consist of sending signals to activate motors  </li>
+<li>The agent can be the program controlling Ms. Pac-Man. In this case, the environment is a simulation of the Atari game</li>
+<li>The agent can be the program playing a board game such as Go</li>
+<li>The agent does not have to control a physically (or virtually) moving thing. A smart thermostat, getting positive rewards whenever it is close to the target temperature and saves energy, and negative rewards when humans need to tweak the temperature</li>
+<li>The agent can observe stock market prices and decide how much to buy
+or sell every second. Rewards are obviously the monetary gains and
+losses</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="RL-framework">RL framework<a class="anchor-link" href="#RL-framework"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/reinforcement-learning/images/copied_from_nb/my_icons/RL_framework.JPG" alt="" style="max-width: 700px" />
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Key Concepts and Terminology</strong>:</p>
+<ol>
+<li><p>The main characters of RL are the agent and the environment:<br /></p>
+<ul>
+<li>The agent is an entity which is of interest to us</li>
+<li>The environment is the world that the agent lives in and interacts with. At every step of interaction, the agent sees a (possibly partial) observation of the state of the environment, and then decides on an action to take  </li>
+<li>The environment changes when the agent acts on it, but may also change on its own  </li>
+</ul>
+</li>
+<li><p>Moreover:</p>
+<ul>
+<li>The agent perceives a reward signal from the environment, a number that tells it how good or bad the current world state is  </li>
+<li>The goal of the agent is to maximize its cumulative reward, called return. Reinforcement learning    methods are ways that the agent can learn behaviors to achieve its goal</li>
+</ul>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>To talk more specifically what RL does, we need to introduce additional terminology. We need to talk about states and observations,
+action spaces,
+policies,
+return,
+and value functions.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>States and Observations<br /></h3>
+<ul>
+<li>A state '<strong>s</strong>' is a complete description of the state of the world.
+There is no information about the world which is hidden from the state.  </li>
+<li><p>An observation o is a partial description of a state, which may omit information. 
+A lot of the times, observations and state are used interchangeably</p>
+</li>
+<li><p>In deep RL, we almost always represent states and observations by a real-valued vector, matrix, or higher-order tensor
+For instance, a visual observation could be represented by the RGB matrix of its pixel values;<br />
+the state of a robot might be represented by its joint angles and velocities</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Action Spaces <br /></h3>
+<ul>
+<li>Different environments allow different kinds of actions  </li>
+<li>The set of all valid actions in a given environment is often called the action space. Some environments, like Atari and Go, have discrete action spaces, where only a finite number of moves are available to the agent<br />
+Other environments, like where the agent controls a robot in a physical world, have continuous action spaces</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Policies">Policies<a class="anchor-link" href="#Policies"> </a></h2><ul>
+<li>The algorithm a software agent uses to determine its actions is called its policy. It can be deterministic or stochastic denoted by $\Pi$</li>
+<li>Because the policy is essentially the agent’s brain, it’s not uncommon to substitute the word “policy” for “agent”, eg saying “The policy is trying to maximize reward.”</li>
+<li>In deep RL, we deal with parameterized policies i.e policies whose outputs are computable functions that depend on a set of parameters (eg the weights and biases of a neural network) which we can adjust to change the behavior via some optimization algorithm  </li>
+</ul>
+<p><figure>
+  
+    <img class="docimage" src="/reinforcement-learning/images/copied_from_nb/my_icons/RL_agent.JPG" alt="" style="max-width: 800px" />
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Policy design<br /></h3>
+<ul>
+<li><p>Techniques to design a policy:</p>
+
+<pre><code>For example, consider a robotic vacuum cleaner whose reward is
+the amount of dust it picks up in 30 minutes. 
+Its policy could be to move forward with some probability p every second,
+or randomly rotate left or right with probability 1 – p. 
+The rotation angle would be a random angle between –r and +r.
+
+How would you train such a robot?
+There are just two policy parameters you can tweak: the probability p and the angle range r.</code></pre>
+</li>
+</ul>
+<p><figure>
+  
+    <img class="docimage" src="/reinforcement-learning/images/copied_from_nb/my_icons/RL_vaccum_robot.JPG" alt="" style="max-width: 700px" />
+    
+    
+</figure>
+.<br /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Four points in policy space (left) and the agent’s corresponding behavior (right)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>One possible learning algorithm could be to try out many different values for these parameters, and pick the
+combination that performs best (see above Figure).<br />
+This is an example of <strong><em>policy search using a brute force approach</em></strong>. When the policy space is too
+large (which is generally the case), finding a good set of parameters<br />
+this way is like searching for a needle in a gigantic haystack.</li>
+<li>Another way to explore the policy space is to use genetic algorithms. For example, you could randomly create a first generation of 100 policies and try them out,<br />
+then “kill” the 80 worst policies and make the 20 survivors produce 4 offspring each.<br />
+An offspring is a copy of its parent plus some random variation. The surviving policies plus their offspring together constitute the second generation.<br />
+we can continue to iterate through generations this way until we find a good policy.</li>
+<li>Yet another approach is to use optimization techniques, by evaluating the
+gradients of the rewards with regard to the policy parameters, then tweaking these parameters by following the gradients toward higher rewards. This approach, is called <strong>policy gradients (PG)</strong> .  </li>
+</ul>
+<p>Going back to the vacuum cleaner robot, you could slightly increase p and evaluate whether doing so increases the amount of dust picked up by the robot in 30 minutes;<br />
+if it does, then increase p some more, or else reduce p.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="OpenAI-Gym">OpenAI Gym<a class="anchor-link" href="#OpenAI-Gym"> </a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p>OpenAI Gym is a toolkit that provides a wide variety of simulated
+environments(Atari games, board games, 2D and 3D physical simulations etc.) so you can train agents, compare them, or develop new RL algorithms.<br /><br />
+One of the challenges of Reinforcement Learning is that in order to train an
+agent, you first need to have a working environment.
+If you want to program an agent that will learn to play an Atari game, you will need an Atari game
+simulator. If you want to program a walking robot, then the environment is the
+real world, and you can directly train your robot in that environment, but this has
+its limits:if the robot falls off a cliff, you can’t just click Undo. You can’t speed up time either; 
+And it’s generally too expensive to train 1,000 robots in parallel.<br />
+In short, training is hard and slow in the real world, so you generally need a simulated environment.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p><div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;OpenAI_Environments&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">gym</span><span class="o">.</span><span class="n">envs</span><span class="o">.</span><span class="n">registry</span><span class="o">.</span><span class="n">all</span><span class="p">())[:</span><span class="mi">50</span><span class="p">]]})</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">style</span>
+        <span class="o">.</span><span class="n">set_table_styles</span><span class="p">([{</span><span class="s1">&#39;selector&#39;</span><span class="p">:</span> <span class="s1">&#39;th&#39;</span><span class="p">,</span> <span class="s1">&#39;props&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="s1">&#39;font-size&#39;</span><span class="p">,</span> <span class="s1">&#39;20pt&#39;</span><span class="p">)]}])</span>
+        <span class="o">.</span><span class="n">set_properties</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;font-size&#39;</span><span class="p">:</span> <span class="s1">&#39;20pt&#39;</span><span class="p">})</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+</p>
+    </details>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<style type="text/css">
+    #T_28314e7a_2776_11ec_ada1_cc2f716aa8ff th {
+          font-size: 20pt;
+    }#T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow0_col0,#T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow1_col0,#T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow2_col0,#T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow3_col0,#T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow4_col0,#T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow5_col0,#T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow6_col0,#T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow7_col0,#T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow8_col0,#T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow9_col0{
+            font-size:  20pt;
+        }</style><table id="T_28314e7a_2776_11ec_ada1_cc2f716aa8ff"><thead>    <tr>        <th class="blank level0"></th>        <th class="col_heading level0 col0">OpenAI_Environments</th>    </tr></thead><tbody>
+                <tr>
+                        <th id="T_28314e7a_2776_11ec_ada1_cc2f716aa8fflevel0_row0" class="row_heading level0 row0">3</th>
+                        <td id="T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow0_col0" class="data row0 col0">ReversedAddition3-v0</td>
+            </tr>
+            <tr>
+                        <th id="T_28314e7a_2776_11ec_ada1_cc2f716aa8fflevel0_row1" class="row_heading level0 row1">31</th>
+                        <td id="T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow1_col0" class="data row1 col0">Striker-v2</td>
+            </tr>
+            <tr>
+                        <th id="T_28314e7a_2776_11ec_ada1_cc2f716aa8fflevel0_row2" class="row_heading level0 row2">1</th>
+                        <td id="T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow2_col0" class="data row2 col0">RepeatCopy-v0</td>
+            </tr>
+            <tr>
+                        <th id="T_28314e7a_2776_11ec_ada1_cc2f716aa8fflevel0_row3" class="row_heading level0 row3">47</th>
+                        <td id="T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow3_col0" class="data row3 col0">FetchSlide-v1</td>
+            </tr>
+            <tr>
+                        <th id="T_28314e7a_2776_11ec_ada1_cc2f716aa8fflevel0_row4" class="row_heading level0 row4">6</th>
+                        <td id="T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow4_col0" class="data row4 col0">CartPole-v0</td>
+            </tr>
+            <tr>
+                        <th id="T_28314e7a_2776_11ec_ada1_cc2f716aa8fflevel0_row5" class="row_heading level0 row5">11</th>
+                        <td id="T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow5_col0" class="data row5 col0">Acrobot-v1</td>
+            </tr>
+            <tr>
+                        <th id="T_28314e7a_2776_11ec_ada1_cc2f716aa8fflevel0_row6" class="row_heading level0 row6">27</th>
+                        <td id="T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow6_col0" class="data row6 col0">HotterColder-v0</td>
+            </tr>
+            <tr>
+                        <th id="T_28314e7a_2776_11ec_ada1_cc2f716aa8fflevel0_row7" class="row_heading level0 row7">48</th>
+                        <td id="T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow7_col0" class="data row7 col0">FetchPickAndPlace-v1</td>
+            </tr>
+            <tr>
+                        <th id="T_28314e7a_2776_11ec_ada1_cc2f716aa8fflevel0_row8" class="row_heading level0 row8">40</th>
+                        <td id="T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow8_col0" class="data row8 col0">Walker2d-v2</td>
+            </tr>
+            <tr>
+                        <th id="T_28314e7a_2776_11ec_ada1_cc2f716aa8fflevel0_row9" class="row_heading level0 row9">19</th>
+                        <td id="T_28314e7a_2776_11ec_ada1_cc2f716aa8ffrow9_col0" class="data row9 col0">KellyCoinflipGeneralized-v0</td>
+            </tr>
+    </tbody></table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>The Cart Pole/Inverted pendulum problem<br /></h2>
+<p>The Cart-Pole is a classic control problem. It is a very simple environment composed of a cart that can move left or right, and pole placed vertically on top of it.<br />
+The agent must move the cart left or right to keep the pole upright.<br /><br />
+
+<center class="youtube-iframe-wrapper">
+    <iframe width="730" height="315" src="https://www.youtube.com/embed/watch?v=qMlcsc43-lg" frameborder="0" allowfullscreen=""></iframe>
+</center>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/reinforcement-learning/images/copied_from_nb/my_icons/Cartpole.JPG" alt="" style="max-width: 700px" />
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+
+  </div><a class="u-url" href="/reinforcement-learning/2021/10/06/test2.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/reinforcement-learning/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/reinforcement-learning/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/reinforcement-learning/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Welcome to my blog! Here I will post about some of the projects that I’m working on  broadly within ML.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/reinforcement-learning/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/reinforcement-learning/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
