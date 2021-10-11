@@ -62882,7 +62882,7 @@ for each next state</li>
 <li>Next, we compute the target Q-Value for each experience’s state-action pair using the equation defined above</li>
 <li>Since the DQN will also output the Q Values for the other possible actions, and not just for the action that was
 actually chosen by the agent. We need to mask out all the Q-Values
-we do not need. 'The tf.one_hot()' function makes it easy to convert
+we do not need. <code>The tf.one_hot()</code> function makes it easy to convert
 an array of action indices into such a mask, using which we can zero out the unwanted Q values.
 This gives us the Q_values tensor, containing one predicted Q-Value for
 each experience in the batch.</li>
