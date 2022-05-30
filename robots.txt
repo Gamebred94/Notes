@@ -1,1 +1,1 @@
-Sitemap: https://gamebred94.github.io/reinforcement-learning/sitemap.xml
+Sitemap: https://gamebred94.github.io/WelcomeTotheMachine/sitemap.xml
