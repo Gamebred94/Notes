@@ -4,18 +4,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Ashish Gusain’s blog | Welcome to my blog! Here I will post about some of the projects that I’m working on broadly within ML.</title>
+<title>Recommendation systems and Collaborative Filtering | Ashish Gusain’s blog</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Ashish Gusain’s blog" />
+<meta property="og:title" content="Recommendation systems and Collaborative Filtering" />
+<meta name="author" content="Ashish Gusain" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Welcome to my blog! Here I will post about some of the projects that I’m working on broadly within ML." />
-<meta property="og:description" content="Welcome to my blog! Here I will post about some of the projects that I’m working on broadly within ML." />
-<link rel="canonical" href="https://gamebred94.github.io/WelcomeTotheMachine/" />
-<meta property="og:url" content="https://gamebred94.github.io/WelcomeTotheMachine/" />
+<meta name="description" content="Demo and Discussion of Collaborative filtering using FastAI" />
+<meta property="og:description" content="Demo and Discussion of Collaborative filtering using FastAI" />
+<link rel="canonical" href="https://gamebred94.github.io/WelcomeTotheMachine/recommendation%20systems/collaborative%20filtering/fastai/python/deep%20learning/2022/06/01/CF-copy.html" />
+<meta property="og:url" content="https://gamebred94.github.io/WelcomeTotheMachine/recommendation%20systems/collaborative%20filtering/fastai/python/deep%20learning/2022/06/01/CF-copy.html" />
 <meta property="og:site_name" content="Ashish Gusain’s blog" />
-<meta property="og:image" content="https://gamebred94.github.io/WelcomeTotheMachine/images/logo.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-06-01T00:00:00-05:00" />
 <script type="application/ld+json">
-{"url":"https://gamebred94.github.io/WelcomeTotheMachine/","@type":"WebSite","image":"https://gamebred94.github.io/WelcomeTotheMachine/images/logo.png","headline":"Ashish Gusain’s blog","name":"Ashish Gusain’s blog","description":"Welcome to my blog! Here I will post about some of the projects that I’m working on broadly within ML.","@context":"https://schema.org"}</script>
+{"datePublished":"2022-06-01T00:00:00-05:00","url":"https://gamebred94.github.io/WelcomeTotheMachine/recommendation%20systems/collaborative%20filtering/fastai/python/deep%20learning/2022/06/01/CF-copy.html","@type":"BlogPosting","headline":"Recommendation systems and Collaborative Filtering","dateModified":"2022-06-01T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://gamebred94.github.io/WelcomeTotheMachine/recommendation%20systems/collaborative%20filtering/fastai/python/deep%20learning/2022/06/01/CF-copy.html"},"author":{"@type":"Person","name":"Ashish Gusain"},"description":"Demo and Discussion of Collaborative filtering using FastAI","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/WelcomeTotheMachine/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://gamebred94.github.io/WelcomeTotheMachine/feed.xml" title="Ashish Gusain's blog" /><link rel="shortcut icon" type="image/x-icon" href="/WelcomeTotheMachine/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -83,52 +85,91 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <div class="home"><p>This site is built with <a href="https://github.com/fastai/fastpages">fastpages</a>, An easy to use blogging platform with extra features for Jupyter Notebooks.</p>
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-<p><img src="/WelcomeTotheMachine/images/diagram.png" alt="" title="https://github.com/fastai/fastpages" /></p>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Recommendation systems and Collaborative Filtering</h1><p class="page-description">Demo and Discussion of Collaborative filtering using FastAI</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-06-01T00:00:00-05:00" itemprop="datePublished">
+        Jun 1, 2022
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Ashish Gusain</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
 
-<p><a href="https://github.com/fastai/fastpages">fastpages</a> automates the process of creating blog posts via GitHub Actions, so you don’t have to fuss with conversion scripts.  A full list of features can be found on <a href="https://github.com/fastai/fastpages">GitHub</a>.</p>
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/WelcomeTotheMachine/categories/#Recommendation systems">Recommendation systems</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/WelcomeTotheMachine/categories/#Collaborative filtering">Collaborative filtering</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/WelcomeTotheMachine/categories/#FastAI">FastAI</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/WelcomeTotheMachine/categories/#Python">Python</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/WelcomeTotheMachine/categories/#Deep learning">Deep learning</a>
+        
+      
+      </p>
+    
 
-<p>You can edit the <code class="language-plaintext highlighter-rouge">index.html</code> file to change this content.</p>
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
 
-<h1 id="posts">Posts</h1>
-
-
-
-  
-
-  <!-- Hide posts if front matter flag hide:true -->
-  
-  
-
-  <!-- Sort posts by rank, then date -->
-  
-  
-  
-
- 
-  
-
-   <!-- Assemble final sorted posts array -->
-  
-  <ul class="post-list"><li><h3>
-    <a class="post-link" href="/WelcomeTotheMachine/recommendation%20systems/collaborative%20filtering/fastai/python/deep%20learning/2022/06/01/CF-copy.html">
-    Recommendation systems and Collaborative Filtering
+    <a href="https://github.com/Gamebred94/WelcomeTotheMachine/tree/master/_notebooks/2022-06-01-CF copy.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/WelcomeTotheMachine/assets/badges/github.svg" alt="View On GitHub">
     </a>
-</h3><p class="post-meta-description">Demo and Discussion of Collaborative filtering using FastAI</p><p class="post-meta">Jun 1, 2022</p>
-</li><li><h3>
-    <a class="post-link" href="/WelcomeTotheMachine/reinforcement%20learning/python/deep%20learning/2021/10/06/RL.html">
-    An introduction to Reinforcement Learning
-    </a>
-</h3><p class="post-meta-description">Demo and Discussion of RL & OpenAI gym</p><p class="post-meta">Oct 6, 2021</p>
-</li><li><h3>
-    <a class="post-link" href="/WelcomeTotheMachine/markdown/2020/01/14/test-markdown-post.html">
-    An Example Markdown Post
-    </a>
-</h3><p class="post-meta-description">A minimal example of using markdown with fastpages.</p><p class="post-meta">Jan 14, 2020</p>
-</li></ul>
+</div>
 
-    </div>
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/Gamebred94/WelcomeTotheMachine/master?filepath=_notebooks%2F2022-06-01-CF+copy.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/WelcomeTotheMachine/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/Gamebred94/WelcomeTotheMachine/blob/master/_notebooks/2022-06-01-CF copy.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/WelcomeTotheMachine/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-06-01-CF copy.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="Gamebred94/WelcomeTotheMachine"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/WelcomeTotheMachine/recommendation%20systems/collaborative%20filtering/fastai/python/deep%20learning/2022/06/01/CF-copy.html" hidden></a>
+</article>
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/WelcomeTotheMachine/"></data>
